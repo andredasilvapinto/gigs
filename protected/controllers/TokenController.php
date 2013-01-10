@@ -24,17 +24,7 @@ class TokenController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'tokensContext - create, index, authSoundcloud, authTwitter, cronRefreshSoundcloud' //apply filterTokensContext for every page except create (with soundcloud and twitters authentication) and index
 		);
-	}
-
-	//only show/edit/remove my events
-	public function filterTokensContext($filterChain) {
-		$res = Token::model()->findByAttributes(array('userId' => Yii::app()->user->id));
-		if ($res === null)
-			throw new CHttpException("You can't access this connection");
-			
-		$filterChain->run();
 	}
 	
 	/**

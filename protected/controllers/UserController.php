@@ -15,18 +15,7 @@ class UserController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'usersContext - create, index'
 		);
-	}
-	
-	//only show/edit/remove my users
-	public function filterUsersContext($filterChain)
-	{
-		$res = User::model()->findByAttributes(array('id' => Yii::app()->user->id));
-		if ($res === null)
-			throw new CHttpException("You can't access this user");
-			
-		$filterChain->run();
 	}
 
 	/**

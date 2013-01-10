@@ -15,19 +15,7 @@ class EventController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'eventsContext - create, index, listWidget, viewGigWidget'
 		);
-	}
-	
-	//TODO: Remover isto? o que raio faz?
-	//only show/edit/remove my events
-	public function filterEventsContext($filterChain)
-	{
-		$res = Event::model()->findByAttributes(array('userId' => Yii::app()->user->id));
-		if ($res === null)
-			throw new CHttpException("You can't acces s this event");
-			
-		$filterChain->run();
 	}
 
 	/**
